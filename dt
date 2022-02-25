@@ -28,13 +28,19 @@ function arg() {
 
 source modules/cmd.sh
 source modules/squash.sh
+source modules/backport.sh
 
 case $1 in
     help)
         cmd_help
         ;;
     squash)
-        cmd_squash $2
+        shift
+        cmd_squash $@
+        ;;
+    backport)
+        shift
+        cmd_backport $@
         ;;
     "")
         cmd_none

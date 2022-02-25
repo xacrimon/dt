@@ -12,4 +12,9 @@ function cmd_sync() {
 
     git pull
     git submodule update --recursive
+
+    if [[ $(git diff --stat) != '' ]]
+    then
+        echo "note: the work tree contains untracked changes"
+    fi
 }

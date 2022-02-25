@@ -1,5 +1,5 @@
 function cmd_sync() {
-    if [[ $(git diff HEAD) != '' ]]
+    if [[ $(git diff --stat) != '' ]]
     then
         echo "error: the work tree is dirty"
         exit 1
@@ -13,7 +13,7 @@ function cmd_sync() {
     git pull
     git submodule update --recursive
 
-    if [[ $(git diff HEAD) != '' ]]
+    if [[ $(git ls-files . --exclude-standard --others) != '' ]]
     then
         echo "note: the work tree contains untracked changes"
     fi

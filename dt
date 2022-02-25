@@ -5,9 +5,9 @@
 set -e
 
 # Arguments
-#   - $1: The argument name.
-#   - $2: The argument pattern.
-#   - $3: The argument value.
+#   - $1: The argument name
+#   - $2: The argument pattern
+#   - $3: The argument value
 function arg() {
     case $2 in
         uint)
@@ -26,33 +26,8 @@ function arg() {
     exit 1
 }
 
-function cmd_none() {
-    echo "no command specified"
-    echo ""
-    echo "usage: dt help"
-}
-
-function cmd_unknown() {
-    echo "unknown subcommand: $1"
-    echo ""
-    echo "usage: dt help"
-}
-
-function cmd_help() {
-    echo "usage: dt <command>"
-    echo ""
-    echo "commands:"
-    echo "  - help"
-    echo "  - squash <number of commits>"
-}
-
-# Arguments
-#   - $1: The N latest commits to squash.
-function cmd_squash() {
-    git reset --soft HEAD~$1
-    msg=$(git log --format=%B --reverse HEAD..HEAD@$1)
-    git commit --edit -m "$msg"
-}
+source modules/cmd.sh
+source modules/squash.sh
 
 case $1 in
     help)

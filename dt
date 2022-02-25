@@ -32,6 +32,13 @@ function cmd_none() {
     echo "usage: dt help"
 }
 
+function cmd_unknown() {
+    echo "unknown subcommand: $1"
+    echo ""
+    echo "usage: dt help"
+    exit 1
+}
+
 function cmd_help() {
     echo "usage: dt <command>"
     echo ""
@@ -56,7 +63,10 @@ case $1 in
         arg "number of commits" uint $2
         cmd_squash $2
         ;;
-    *)
+    "")
         cmd_none
+        ;;
+    *)
+        cmd_unknown $1
         ;;
 esac

@@ -4,8 +4,6 @@ function cmd_none() {
     echo "usage: dt help"
 }
 
-# Arguments
-#   - $1: The unknown command
 function cmd_unknown() {
     echo "unknown subcommand: $1"
     echo ""

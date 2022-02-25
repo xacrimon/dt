@@ -34,7 +34,6 @@ case $1 in
         cmd_help
         ;;
     squash)
-        arg "number of commits" uint $2
         cmd_squash $2
         ;;
     "")

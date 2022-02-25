@@ -16,4 +16,5 @@ function cmd_help() {
     echo "commands:"
     echo "  - help"
     echo "  - squash <number of commits>"
+    echo "  - sync <branch?>"
 }

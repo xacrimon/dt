@@ -8,7 +8,7 @@ set -e
 #   - $1: The argument name
 #   - $2: The argument pattern
 #   - $3: The argument value
-function arg() {
+function validate() {
     case $2 in
         uint)
             if [[ $3 =~ ^[0-9]+$ ]]
@@ -22,12 +22,13 @@ function arg() {
             ;;
     esac
 
-    echo "argument <$1>: \"$3\" does not match pattern $2"
+    echo "error: argument <$1> with value \"$3\" does not match pattern $2"
     exit 1
 }
 
 source modules/cmd.sh
 source modules/squash.sh
+source modules/sync.sh
 
 case $1 in
     help)
@@ -36,6 +37,10 @@ case $1 in
     squash)
         shift
         cmd_squash $@
+        ;;
+    sync)
+        shift
+        cmd_sync $@
         ;;
     "")
         cmd_none

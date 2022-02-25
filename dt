@@ -18,7 +18,7 @@ function arg() {
             ;;
         *)
             echo "internal error: unknown pattern <$2>"
-            exit
+            exit 1
             ;;
     esac
 

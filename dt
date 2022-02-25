@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Abort if we run into an unexpected error.
+# Without this, we may make changes to a state we aren't expecting.
+set -e
+
+modules=()

@@ -15,6 +15,6 @@ function cmd_sync() {
 
     if [[ $(git ls-files . --exclude-standard --others) != '' ]]
     then
-        echo "note: the work tree contains untracked changes"
+        echo "note: the work tree contains untracked files"
     fi
 }

@@ -26,9 +26,10 @@ function validate() {
     exit 1
 }
 
-source modules/cmd.sh
-source modules/squash.sh
-source modules/sync.sh
+MODULES_DIR=$(dirname $0)/modules
+source $MODULES_DIR/cmd.sh
+source $MODULES_DIR/squash.sh
+source $MODULES_DIR/sync.sh
 
 case $1 in
     help)

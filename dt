@@ -4,4 +4,53 @@
 # Without this, we may make changes to a state we aren't expecting.
 set -e
 
-modules=()
+# Arguments
+#   - $1: The argument name.
+#   - $2: The argument pattern.
+#   - $3: The argument value.
+function arg() {
+    case $2 in
+        uint)
+            if [[ ! $3 =~ ^[0-9]+$ ]]
+            then
+                echo "argument <$1> does not match pattern $2"
+                exit
+            fi
+            ;;
+    esac
+}
+
+function cmd_none() {
+    echo "no command specified"
+    echo ""
+    echo "usage: dt help"
+}
+
+function cmd_help() {
+    echo "usage: dt <command>"
+    echo ""
+    echo "commands:"
+    echo "  - help"
+    echo "  - squash <number of commits>"
+}
+
+# Arguments
+#   - $1: The N latest commits to squash.
+function cmd_squash() {
+    git reset --soft HEAD~$1
+    msg=$(git log --format=%B --reverse HEAD..HEAD@$1)
+    git commit --edit -m "$msg"
+}
+
+case $1 in
+    help)
+        cmd_help
+        ;;
+    squash)
+        arg "number of commits" uint $2
+        cmd_squash $2
+        ;;
+    *)
+        cmd_none
+        ;;
+esac

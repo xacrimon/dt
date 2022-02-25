@@ -16,5 +16,4 @@ function cmd_help() {
     echo "commands:"
     echo "  - help"
     echo "  - squash <number of commits>"
-    echo "  - backport [-p/--pr <pr number>] [-t/--target <target branches>]"
 }
